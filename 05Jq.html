@@ -1,0 +1,141 @@
+<DOCTYPE html>
+
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+		<style>
+			 table {
+				font-family: arial, sans-serif;
+				border-collapse: collapse;
+				width: 50%;
+			}
+			td, th {
+				border: 1px solid #dddddd;
+				text-align: left;
+				padding: 8px;
+			}
+			th {
+				background-color: #ccd;
+			}
+			tr:nth-child(even) {
+				background-color: #dddddd;
+			}
+			tr:nth-child(odd) {
+				background-color: #ddeedd;
+
+			}
+		</style>
+	</head>
+	
+	<body>
+		<table id = "tblData">
+			<tbody>
+				<tr>
+					<th> Name </th>
+					<th> Age </th>
+					<th> Country </th>
+					<th> Delete</th>
+					<th> Insert</th>
+				</tr>
+				<tr>
+					<td> Maria Anders </td>
+					<td> 30 </td>
+					<td> Germany </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+				<tr>
+					<td> Ted Anders </td>
+					<td> 34 </td>
+					<td> Germany </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+				<tr>
+					<td> Fred Anders </td>
+					<td> 34 </td>
+					<td> Germany </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+				<tr>
+					<td> Gerald Anders </td>
+					<td> 34 </td>
+					<td> Germany </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+				<tr>
+					<td> Julio Vernandez </td>
+					<td> 46 </td>
+					<td> Germany </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+				<tr>
+					<td> Julia Smith </td>
+					<td> 18 </td>
+					<td> USA </td>
+					<td> <input class= "delete" type = "button" value="Delete" />
+				</tr>
+				<tr>
+					<td> Fred Uber </td>
+					<td> 50 </td>
+					<td> USA </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+				<tr>
+					<td> Marvin Sqaure  </td>
+					<td> 39 </td>
+					<td> Wales </td>
+					<td> <input class= "delete" type = "button" value="Delete" /> </td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<script>
+		$(document).ready(function() {
+			
+			$('table').find('tr').each(function(){
+				$(this).find('td').eq(3).after('<td><input class= "insert" type = "button" value="Insert" /></td>');
+			});
+			
+			// remove row from table, plain vanilla
+			/*
+			$("#tblData tr:has(td)").click(function() { 
+				 $(this).remove(); 
+			});
+			*/
+			
+			// remove row from table, with animation (fade)
+			/*
+			$("#tblData tr:has(td)").click(function() {
+				$(this).fadeOut(500, function() {
+					$(this).remove();
+				});
+			});
+			*/
+			
+			// remove row from table, using button (uses "delegate event approach")
+			
+			$('#tblData').on('click', '.delete', function() {
+				$(this).closest('tr').remove();
+			});
+			
+			// remove column from table by clicking header
+			$("#tblData tr:has(th)").mouseover(function(e) {
+				$(this).css("cursor", "pointer");
+			});
+			$("#tblData th").click(function() {
+				var iIndex = $(this).closest("th").prevAll("th").length;
+				alert(iIndex);
+				$(this).parents("#tblData").find("tr").each(function() {
+					$(this).find("td:eq(" + iIndex + ")").remove();
+					$(this).find("th:eq(" + iIndex + ")").remove();
+				});
+			});
+			
+			$('#tblData').on('click', '.insert', function() {
+				var iIndex = $(this).closest("tr").prevAll("tr").length;
+				$('#tblData').append($(this).parents("#tblData").closest("tr"), ['<tr><td>Name</td><td>age</td><td>country</td><td> <input class= "delete" type = "button" value="Delete" /> </td><td> <input class= "insert" type = "button" value="Insert" /> </td></tr>']);
+			});
+
+		}); // end $(document).ready(function() {
+		</script>
+	</body>
+</html>
