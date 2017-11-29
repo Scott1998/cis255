@@ -1,0 +1,102 @@
+<!doctype html>
+<html ng-app="app1" ng-cloak>
+
+	 <head>
+    <title>07a Angular Part 3</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    table{
+      width: 400px;
+      text-align: left;
+      border: 2px solid black;
+      padding: 10px;
+    }
+    input.ng-dirty.ng-invalid {
+      border-color: red;
+    }
+    </style>
+  </head>
+  
+  <body>
+  
+	<div id="people" ng-controller="peopleCtrl">
+		<form name="userForm" ng-submit="saveUser(userInfo)">
+			
+			<label>First Name:</label>
+			
+			<input type="text" name="fName" ng-model="userInfo.fName"
+			ng-required="true" ng-minlength="2" />
+			
+			<span class="error-message" ng-show="userForm.fName.$dirty
+			&& userForm.fName.$error.required">Must Enter a First Name
+			</span>
+
+			<!-- Check if the element has been edited and whether it contains at least 2 characters -->
+			<span class="error-message" ng-show="userForm.fName.$dirty
+			&& userForm.fName.$error.minlength">Must be a Minimum of 2 Characters</span>
+
+			<br><br>
+			
+			<label>Last Name:</label>
+
+			<input type="text" name="lName" ng-model="userInfo.lName"
+			ng-required="true" ng-minlength="2" />
+	
+			<span class="error-message" ng-show="userForm.lName.$dirty
+			&& userForm.lName.$error.required">Must Enter a Last Name
+			</span>
+	
+			<span class="error-message" ng-show="userForm.lName.$dirty
+			&& userForm.lName.$error.minlength">Must be a Minimum of 2 Characters</span>
+	
+			<br><br>
+			
+			<label>Phone Number:</label>
+			<input type ="text" name="pNumber" ng-model="userInfo.pNumber"
+			ng-required="true" ng-pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/">
+			
+			<span class="error-message" ng-show="userForm.pNumber.$dirty
+			&& userForm.pNumber.$invalid">Must Enter in form of: (xxx)xxx-xxxx
+			</span>
+
+			<br><br>
+			
+			<label>Email:</label>
+			<input type ="text" name="email" ng-model="userInfo.email"
+			ng-required="true" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i'>
+			
+			<span class="error-message" ng-show="userForm.email.$dirty
+			&& userForm.email.$invalid">Must Enter in form of: xxx@xxx.xxx
+			</span>
+
+			<br><br>
+			
+			<label>Zip Code:</label>
+			<input type ="text" name="zip" ng-model="userInfo.zip"
+			ng-required="true" ng -minlength = "5" ng-maxlength ="5" ng-pattern='/^\d+$/'>
+			
+			<span class="error-message" ng-show="userForm.zipCode.$dirty
+			&& userForm.zipCode.$invalid">Must Enter in five digits
+			</span>
+
+			<br><br>
+			
+			<input type="submit" value="Save" ng-disabled="userForm.$invalid"/>
+			
+			<ul>
+				<li ng-repeat = "item in user">
+				{{ 'User: ' + item.fName + " " + item.lName + ",  " + item.pNumber +
+					",  " + item.email + ",  " + item.city  + ",  " + item.state + " " + item.zip}}
+				</li>
+			</ul>
+		</form>
+	
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/07aAngularP3.js"></script>
+  </body>
+  
+</html>

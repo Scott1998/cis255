@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <title>SVSU CSIS Mobile</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700|Noto+Sans:400,400i,700,700i" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="hy-drawer.js"></script>
+	<link href="sdangst.css" rel = "stylesheet">
+    <style>.hy-drawer-content { color:#fff; background:fireBrick; } aside a { color: #fff; }</style>
+  </head>
+  <body>
+  
+    <div class="wrapper">
+
+	<div id="scroll-content">
+	
+		<header></header>
+
+        <a id="menuEl" href="#drawerEl"><span class="sr-only">Menu</span></a>
+
+        <h1>Computer Science & Information Systems (CSIS)</h1>
+		
+		<img src ="pictures/computer-science.jpg" />
+        <p>The Computer Science program and Computer Information Systems program share many of the same core classes to ensure that students are adequately prepared 
+			with the necessary background for their upper class studies.  This common core includes programming both in a Windows graphical environment as well as in
+			a UNIX command-line environment.  Industry uses both operating systems and so the Department wants students to be well versed in each area.  Additionally,
+			students will learn C++ and Microsoft Visual Basic as toolsets to develop applications.  The common core also includes introductory data structures, 
+			statistics with computer applications, web client development and web server development.  Both majors are heavily programming-oriented.  The curriculum
+			has been designed this way on purpose so that students can learn about a concept and then use their programming knowledge as a vehicle to understand, 
+			experiment and implement that topic.  Both programs do a great job in preparing students for their future in industry or to pursue a graduate degree</p>
+        
+		<h2>Computer Science</h2>
+        <p>Computer Science is moare theoretic than the Computer Infomation Systems degree.  Computer Science uses more abstractions and mathematics at its core than CIS.
+			Students in this degree typically will see Tropical Coverage Synopsis, which consists of Models, technologies, algorithms and theory that are crucial to 
+			software and hardware systems and industry.  As well as a wealth of knowledge in cutting edge technological skills and techniques</p>
+			
+        <h2>Contact Us</h2>
+		</br>
+		<p>icho@svsu.edu</p>
+        <p>(989) 964-2044</p>
+		<br />
+	</div> <!-- end scroll-content -->
+		<aside id="drawerEl" data-prevent-default="true" data-mouse-events="true">
+		  <ul>
+			<li><a href="csis_mobile.html">Home</a></li>
+			<li><a href="about.html">About Us</a></li>
+			<li><a href="news.html">News</a></li>
+			<li><a href="mission.html">Mission Statement</a></li>
+			<li><a href="requirements.html">Program Requirements</a></li>
+			<li><a href="sequence.html">Course Sequence</a></li>
+			<li><a href="cssequence.html">CS Course Sequence</a></li>
+			<li><a href="master.html">Master of Computer Science and Information Systems</a></li>
+			<li><a href="careers.html">Careers</a></li>
+			<li><a href="faculty.html">Faculty</a></li>
+			<li><a href="cset.html">College of Science, Enigneering and Technology</a></li>
+			<li><a href="cis.html">CIS</a></li>
+			<li><a href="whycsis.html">Why study CSIS?</a></li>
+			<li><a href="alumni.html">Our Alumni</a></li>
+		  </ul>
+		</aside>
+    </div> <!-- end wrapper -->
+	
+	<footer>
+		<button onclick="bottomFunction()" id="yourBtn">Go To Bottom</button>
+		<button onclick="topFunction()" id="myBtn" title="Go to top">Return To Top</button>
+	</footer>
+	
+
+    <script>
+      var ua = navigator.userAgent.toLowerCase();
+      var isSafari = ua.indexOf('safari') > 0 && ua.indexOf('chrome') < 0;
+      var isMobileSafari = isSafari && ua.indexOf('mobile') > 0;
+
+      $('#drawerEl').drawer({
+        range: isMobileSafari ? [35, 150] : [0, 150],
+        threshold: isSafari ? 0 : 10,
+      })
+      .on('transitioned.hy.drawer', function(e) {
+        console.log('hy-drawer transitioned to', e.detail);
+      });
+
+      $('#menuEl').click(function (e) {
+        e.preventDefault();
+        $('#drawerEl').drawer('toggle');
+      });
+    </script>
+	<script src="sdangst.js"></script>
+  </body>
+  
+</html>

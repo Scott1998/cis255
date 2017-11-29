@@ -1,0 +1,69 @@
+<!Doctype html>
+<html ng-app="app1" ng-init="person = {fName: 'Scott', lName: 'Angst'};
+  courses = [{name: 'CIS 255', credits: '4'}, {name: 'CS 216', credits: '4'}, {name: 'THEA 128A', credits: '3'}, 
+			 {name: 'PHIL 210B ', credits: '3'}, {name: 'MATH 223', credits: '4'}, {name: 'CS 331', credits: '4'}, 
+			 {name: 'CIS 355', credits: '4'}, {name: 'CHEM 102B', credits: '4'}, {name: 'CS 116', credits: '4'}, 
+			 {name: 'MATH 161', credits: '4'}]">
+  <head>
+    <title>AngularJS Tutorial</title>
+  </head>
+  <body>
+ 
+    <div ng-controller="ctrl1">
+      <span>Values:</span>
+ 
+      <input type="text" ng-model="first" />
+      <input type="text" ng-model="second" />
+ 
+      <!-- Bind a click on this button to the function updateValue
+      using ng-click -->
+      <button ng-click="updateValue()">Sum</button>
+	  <button ng-click="updateHypotenuse()">Calculate Hypotenuse</button>
+      <br><br>
+ 
+      <!-- Displays the Scope value of calculation in the expression-->
+      {{calculation}}
+	  <br />
+	  {{hypotenuse}}
+ 
+      <!-- You can perform calculations in expressions -->
+      <p>5 + 5 = {{5+5}}</p>
+ 
+      <!-- Expressions bind data to HTML as well -->
+      <p>Your first value is {{first}}</p>
+ 
+      <!-- You can do the same with ng-bind -->
+      <p>Your second value is
+        <span data-ng-bind="second"></span>
+      </p>
+ 
+      <!-- Strings can be built in expressions -->
+      <p>{{person.fName + " " + person.lName}} you entered {{first + " and " + second}}</p>
+ 
+      <!-- ng-repeat cycles through a collection -->
+      <ul>
+        <li ng-repeat = "course in courses">
+          {{ 'Course: ' + course.name + ', Credits: ' + course.credits}}
+        </li>
+      </ul>
+    </div>
+	
+	<h4 ng-controller="randomCourse1">Random Course: {{rCourse1}}</h4>
+	<h4 ng-controller="randomCourse2">Random Course: {{rCourse2}}</h4>
+	
+	<div ng-controller="courseListCtrl">
+		<ol>
+			<li ng-repeat = "course in courses">
+				{{course.name}}
+			</li>
+		</ol>
+	</div>
+	
+ 
+    <!-- Load the AngularJS library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+ 
+    <!-- Load the JS Module -->
+    <script src="js/angulartut.js"></script>
+  </body>
+  </html>
